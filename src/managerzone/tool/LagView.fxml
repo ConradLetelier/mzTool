@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="754.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerzone.tool.LagViewController">
+   <children>
+      <BorderPane layoutX="339.0" layoutY="159.0" prefHeight="560.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="0.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="606.0" minWidth="10.0" prefWidth="606.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="0.0" prefWidth="0.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="165.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="406.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="TOP_CENTER" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <HBox>
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <Label fx:id="nameLabel" alignment="TOP_LEFT" text="ValfrittLagNamn" textFill="#8d8d8d">
+                                       <font>
+                                          <Font name="Calibri Italic" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="CENTER_LEFT" spacing="50.0">
+                                       <children>
+                                          <Label minWidth="-Infinity" prefWidth="100.0" text="Spelare" textFill="#8d8d8d">
+                                             <font>
+                                                <Font name="Calibri Italic" size="16.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets right="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label fx:id="playerSum" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="0" textFill="#8d8d8d">
+                                             <font>
+                                                <Font name="Calibri" size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="360.0" prefWidth="606.0">
+                           <children>
+                              <VBox prefHeight="335.0" prefWidth="331.0">
+                                 <children>
+                                    <ListView fx:id="playerListView" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#choosePlayer" prefHeight="265.0" prefWidth="250.0" />
+                                    <HBox alignment="CENTER_RIGHT">
+                                       <children>
+                                          <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPlayer" prefHeight="27.0" prefWidth="107.0" text="Lägg till spelare" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="335.0" prefWidth="186.0" />
+                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="335.0" prefWidth="501.0" spacing="10.0">
+                                 <children>
+                                    <VBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label minWidth="-Infinity" prefWidth="100.0" text="Manager">
+                                             <font>
+                                                <Font name="Calibri Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="managerLabel" text="ValfrittLagNamn" textFill="#615f5f">
+                                             <font>
+                                                <Font name="Calibri" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Separator prefWidth="200.0" />
+                                       </children></VBox>
+                                    <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0">
+                                       <children>
+                                          <Label minWidth="-Infinity" prefWidth="100.0" text="Ekonomi">
+                                             <font>
+                                                <Font name="Calibri Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="balanceLabel" text="ValfrittLagNamn" textFill="#615f5f">
+                                             <font>
+                                                <Font name="Calibri" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Separator prefWidth="200.0" />
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="changeTeamButton" mnemonicParsing="false" onAction="#changeTeam" prefWidth="60.0" text="Ändra">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </Button>
+                                          <Button fx:id="removeTeamButton" mnemonicParsing="false" onAction="#remove" prefWidth="60.0" text="Radera">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </center>
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fx:id="menuBar" alignment="CENTER" prefHeight="20.0" prefWidth="754.0" spacing="5.0">
+                     <children>
+                        <Label text="MZ Tool">
+                           <font>
+                              <Font name="Lucida Sans Unicode" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label text="By Conrad Letelier" textFill="#a8a4a4">
+                           <font>
+                              <Font name="Lucida Sans Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="80.0" prefWidth="331.0" />
+                        <ImageView fx:id="minimize" onMouseClicked="#minimizeWindow" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@png/002-minus-button.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="maximize" layoutX="703.0" layoutY="42.0" onMouseClicked="#maximizeWindow" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@png/001-add-button-with-plus-sign-in-a-circle.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="close" layoutX="714.0" layoutY="42.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@png/003-closed.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" styleClass="menu">
+                     <children>
+                        <Label fx:id="TeamConfirmMenuLabel" alignment="CENTER" onMouseClicked="#chooseTeam" prefHeight="30.0" prefWidth="110.0" styleClass="menuItem" text="Välj lag">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Gadugi" size="20.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuItem" text="Lag info">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <font>
+                              <Font name="Gadugi Bold" size="20.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label fx:id="playerMenuButton" alignment="CENTER" onMouseClicked="#playerView" prefHeight="30.0" prefWidth="110.0" styleClass="menuItem" text="Spelare">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <font>
+                              <Font name="Gadugi" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuItem" text="Statistik">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <font>
+                              <Font name="Gadugi" size="20.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" />
+               </BorderPane.margin>
+            </VBox>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

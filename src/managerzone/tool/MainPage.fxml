@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="760.0" styleClass="test" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerzone.tool.MainPageController">
+   <children>
+      <BorderPane layoutX="349.0" layoutY="169.0" prefHeight="560.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="50.0">
+                           <children>
+                              <Label minWidth="-Infinity" prefWidth="100.0" text="Välj Lag">
+                                 <font>
+                                    <Font name="Gadugi Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Sök">
+                                 <padding>
+                                    <Insets left="135.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Gadugi" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="searchBox" maxWidth="-Infinity" minWidth="-Infinity" onKeyPressed="#search" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                        <ListView fx:id="teamListView" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#teamConfirmer" prefHeight="235.0" prefWidth="454.0" />
+                        <HBox alignment="CENTER_RIGHT" layoutX="60.0" layoutY="80.0">
+                           <children>
+                              <Button fx:id="addTeamButton" mnemonicParsing="false" onAction="#addTeam" prefHeight="27.0" prefWidth="82.0" text="Lägg till lag" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="606.0" minWidth="10.0" prefWidth="606.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="0.0" prefWidth="0.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="165.0" minHeight="0.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="318.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </center>
+         <right>
+            <Region prefHeight="508.0" prefWidth="64.0" BorderPane.alignment="CENTER" />
+         </right>
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fx:id="menuBar" alignment="CENTER" prefHeight="20.0" prefWidth="754.0" spacing="5.0">
+                     <children>
+                        <Label text="MZ Tool">
+                           <font>
+                              <Font name="Lucida Sans Unicode" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label text="By Conrad Letelier" textFill="#a8a4a4">
+                           <font>
+                              <Font name="Lucida Sans Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="80.0" prefWidth="331.0" />
+                        <ImageView fx:id="minimize" onMouseClicked="#minimizeWindow" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@png/002-minus-button.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="maximize" layoutX="703.0" layoutY="42.0" onMouseClicked="#maximizeWindow" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@png/001-add-button-with-plus-sign-in-a-circle.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="close" layoutX="714.0" layoutY="42.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@png/003-closed.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" styleClass="menu">
+                     <children>
+                        <Label fx:id="TeamConfirmMenuLabel1" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuItem" text="Välj lag">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Gadugi Bold" size="20.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" style="-fx-border-color: black;" text="Lag info">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <font>
+                              <Font name="Gadugi" size="20.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label fx:id="playerMenuButton" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" style="-fx-border-color: black;" text="Spelare">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <font>
+                              <Font name="Gadugi" size="20.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" style="-fx-border-color: black;" text="Statistik">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <font>
+                              <Font name="Gadugi" size="20.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </top>
+         <left>
+            <Region prefHeight="508.0" prefWidth="64.0" BorderPane.alignment="CENTER" />
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
