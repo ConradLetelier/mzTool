@@ -51,7 +51,7 @@ public class removeTeamController implements Initializable {
             teams.remove(teamIndex);
             teamRemove = false;
         }else if (playerRemove){
-            teams.get(teamIndex).removePlayer(playerIndex);
+            teams.get(teamIndex).getPlayers().remove(playerIndex);
             playerRemove = false;
         }
         

@@ -50,8 +50,7 @@ import static managerzone.tool.removeTeamController.playerRemove;
  */
 public class SpelarViewController implements Initializable {
     Mouse mouse = new Mouse();
-    
-    
+   
     @FXML
     private ImageView image;
     @FXML
@@ -182,13 +181,45 @@ public class SpelarViewController implements Initializable {
     });
     }
 
-    public void setNewImg(){
+    public void setNewImg() {
+        Thread th = new Thread(() -> {
+            int plIndx = playerList.getSelectionModel().getSelectedIndex();
+            if (plIndx >= 0) {
+                String url = teams.get(teamIndex).getPlayers().get(plIndx).getImgURL();
+                Image img = new Image(url);
+                image.setImage(img);
+                playerIndex = plIndx;
+            }
+        });
+        /*
         int plIndx=playerList.getSelectionModel().getSelectedIndex();
         if(plIndx>=0){
         String url = teams.get(teamIndex).getPlayers().get(plIndx).getImgurl();
         Image img = new Image(url);
         image.setImage(img);
+        playerIndex=plIndx;
         }
+         */
+        th.start();
     }
+
+    public ImageView getImage() {
+        return image;
+    }
+    
+    public void setImage(Image img) {
+        image.setImage(img);
+    }
+
+    public ChoiceBox getPlayerList() {
+        return playerList;
+    }
+
+    public void setPlayerList(ChoiceBox playerList) {
+        this.playerList = playerList;
+    }
+    
+    
+    
    
 }

@@ -62,7 +62,7 @@ public class changePlayerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String name = teams.get(teamIndex).getPlayers().get(playerIndex).getName();
-        String imgURl = teams.get(teamIndex).getPlayers().get(playerIndex).getImgurl();
+        String imgURl = teams.get(teamIndex).getPlayers().get(playerIndex).getImgURL();
         nameInput.setText(name);
         urlInput.setText(imgURl);
     }    

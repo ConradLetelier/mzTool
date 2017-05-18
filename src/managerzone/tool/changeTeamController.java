@@ -54,9 +54,9 @@ public class changeTeamController implements Initializable {
         String manager = managerInput.getText();
         String balanceString = balanceInput.getText();
         double balance = Double.parseDouble(balanceString);
-        teams.get(teamIndex).setName(name);
-        teams.get(teamIndex).setManager(manager);
-        teams.get(teamIndex).setBalance(balance);
+        teams.get(teamIndex).setTeamName(name);
+        teams.get(teamIndex).setTeamManager(manager);
+        teams.get(teamIndex).setTeamBalance(balance);
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
@@ -68,9 +68,9 @@ public class changeTeamController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String name = teams.get(teamIndex).getName();
-        String manager = teams.get(teamIndex).getManager();
-        double balance1 = teams.get(teamIndex).getBalance();
+        String name = teams.get(teamIndex).getTeamName();
+        String manager = teams.get(teamIndex).getTeamName();
+        double balance1 = teams.get(teamIndex).getTeamBalance();
         String balance = String.valueOf(balance1);
         nameInput.setText(name);
         managerInput.setText(manager);

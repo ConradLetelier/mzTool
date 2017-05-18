@@ -50,8 +50,8 @@ public class addPlayerController implements Initializable {
     private void addNewPlayer(ActionEvent event) {
         String name=nameInput.getText();
         String imgURL=urlInput.getText();
-        Player newPlayerToBeAdded = new Player(name, imgURL);
-        teams.get(teamIndex).addPlayer(newPlayerToBeAdded);
+        //Player newPlayerToBeAdded = new Player(name, imgURL);
+        //teams.get(teamIndex).getPlayers().add(newPlayerToBeAdded);
         data1.add(name);
         Stage stage = (Stage) confirmAddPlayerButton.getScene().getWindow();
         stage.close();

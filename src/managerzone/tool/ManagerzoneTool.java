@@ -24,10 +24,12 @@ import static managerzone.tool.MainPageController.data;
 public class ManagerzoneTool extends Application {
     
    public static ArrayList<Team> teams = new ArrayList<Team>();
+   public static boolean listSet = true;
    
     
     @Override
     public void start(Stage stage) throws Exception {
+        /*
          Team escala = new Team("Escala", "Conrad Letelier", 4987000);
          Team onDragons = new Team("Onside Dragons", "Conrad Letelier", 489000);
          Team MFF = new Team("Malmö FF", "Albert Nilsson", 837891);
@@ -42,7 +44,7 @@ public class ManagerzoneTool extends Application {
          teams.add(Bar);
          teams.add(Liv);
          teams.add(Man);
-         
+         /*
          Player a = new Player("Mateo Dean", "http://mzimage.com/image.php?lang=se&design=1:000000:000000:::&player=Mateo%2520Dean:::22::&atts=6m:9m:3u:1u:1u:2u:1u:3u:7m:10m:2u:6:9&mzv=false");
          Player b = new Player("Alarico Alfaro", "http://mzimage.com/image.php?lang=se&design=1:000000:000000:::&player=Alarico%2520Alfaro:::21::&atts=5u:6m:2u:3u:0:1u:9m:2u:3u:1u:5u:4:9&mzv=false");
          Player c = new Player("Aznar Casas", "http://mzimage.com/image.php?lang=se&design=1:000000:000000:::&player=Aznar%2520Casas:::16::&atts=4:2u:0:1u:2u:1u:0:2u:1u:3u:1u:0:0&mzv=false");
@@ -54,18 +56,16 @@ public class ManagerzoneTool extends Application {
          Player i = new Player("Paula Lopez", "http://mzimage.com/image.php?lang=se&design=1:000000:000000:::&player=Paula%2520Lopez:::20::&atts=8m:6m:3u:3u:2u:2u:2u:5m:9m:1u:1u:4:9&mzv=false");
          
          
-         
-         escala.addPlayer(a);
-          escala.addPlayer(b);
-          escala.addPlayer(e);
-          escala.addPlayer(f);
-          escala.addPlayer(g);
-          escala.addPlayer(h);
-          escala.addPlayer(i);
-          onDragons.addPlayer(c);
-          onDragons.addPlayer(d);
-          
-     
+         escala.getPlayers().add(a);
+         escala.getPlayers().add(b);
+         escala.getPlayers().add(e);
+         escala.getPlayers().add(f);
+         escala.getPlayers().add(g);
+         escala.getPlayers().add(h);
+         escala.getPlayers().add(i);
+         onDragons.getPlayers().add(c);
+         onDragons.getPlayers().add(d);
+         */
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         
         Scene scene = new Scene(root);

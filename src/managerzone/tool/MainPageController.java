@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,10 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -45,6 +50,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import static managerzone.tool.ManagerzoneTool.listSet;
+
 import static managerzone.tool.ManagerzoneTool.teams;
 
 /**
@@ -52,10 +59,12 @@ import static managerzone.tool.ManagerzoneTool.teams;
  * @author Conrad Letelier <Conrad@Letelier.email>
  */
 public class MainPageController implements Initializable {
-    public static int teamIndex=-1;
+
+    public static int teamIndex = -1;
     public static ObservableList<String> data = FXCollections.observableArrayList();
     Mouse mouse = new Mouse();
-    
+    Client client;
+
     @FXML
     private Label statusLabel;
     @FXML
@@ -72,40 +81,48 @@ public class MainPageController implements Initializable {
     private ImageView close;
     @FXML
     private HBox menuBar;
-    
 
     @FXML
     private void teamConfirmer(MouseEvent event) throws IOException {
-        if(!(teamListView.getSelectionModel().getSelectedIndex() == -1)){
-        teamIndex=teamListView.getSelectionModel().getSelectedIndex();
-        Parent root = FXMLLoader.load(getClass().getResource("LagView.fxml"));
-        Scene s = new Scene(root);
-        Stage stg =(Stage)((Node)event.getSource()).getScene().getWindow();
-        stg.setScene(s);
-        stg.show();
+        if (!(teamListView.getSelectionModel().getSelectedIndex() == -1)) {
+            for (int i = 0; i < teams.size(); i++) {
+                if (teamListView.getSelectionModel().getSelectedItem() == teams.get(i).getTeamName()) {
+                    teamIndex = i;
+                }
+            }
+
+            Parent root = FXMLLoader.load(getClass().getResource("LagView.fxml"));
+            Scene s = new Scene(root);
+            Stage stg = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stg.setScene(s);
+            stg.show();
         }
 
     }
+
     @FXML
     private void minimizeWindow(MouseEvent event) throws IOException {
         Stage stage = null;
         stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
-        @FXML
+
+    @FXML
     private void maximizeWindow(MouseEvent event) throws IOException {
         Stage stage = null;
         stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
         stage.setMaximized(true);
     }
+
     @FXML
     private void closeWindow(MouseEvent event) throws IOException {
         Stage stage = null;
         stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
         stage.close();
     }
+
     @FXML
-    private void addTeam(ActionEvent event) throws IOException{
+    private void addTeam(ActionEvent event) throws IOException {
         Stage stage;
         Parent root;
         stage = new Stage();
@@ -118,42 +135,58 @@ public class MainPageController implements Initializable {
     }
 
     @FXML
-    private void search(KeyEvent event){
+    private void search(KeyEvent event) {
         data.clear();
-        for(int i = 0; i < teams.size(); i++){
-           if(teams.get(i).getName().toLowerCase().matches("(.*)"+searchBox.getText().toLowerCase()+event.getText().toLowerCase()+"(.*)")){
-                data.add(teams.get(i).getName());
+        for (int i = 0; i < teams.size(); i++) {
+            if (teams.get(i).getTeamName().toLowerCase().matches("(.*)" + searchBox.getText().toLowerCase() + event.getText().toLowerCase() + "(.*)")) {
+                data.add(teams.get(i).getTeamName());
             }
         }
-        
-    }
 
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       menuBar.setOnMousePressed(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent t) {
-            mouse.setX(t.getX());
-            mouse.setY(t.getY());
-        }
-    });
-    menuBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        client = ClientBuilder.newClient();
+        getTeams();
+        menuBar.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                mouse.setX(t.getX());
+                mouse.setY(t.getY());
+            }
+        });
+        menuBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
 
-        @Override
-        public void handle(MouseEvent t) {
-            menuBar.getScene().getWindow().setX( t.getScreenX() - mouse.getX() - 14);
-            menuBar.getScene().getWindow().setY( t.getScreenY() - mouse.getY() - 14);
-        }
-    }); 
+            @Override
+            public void handle(MouseEvent t) {
+                menuBar.getScene().getWindow().setX(t.getScreenX() - mouse.getX() - 14);
+                menuBar.getScene().getWindow().setY(t.getScreenY() - mouse.getY() - 14);
+            }
+        });
 
-         data.clear();;
-
-        for(int i = 0; i < teams.size();i++){
-            data.add(teams.get(i).getName());
+        data.clear();;
+        for (int i = 0; i < teams.size(); i++) {
+            data.add(teams.get(i).getTeamName());
         }
-       teamListView.setItems(data);
+
+        teamListView.setItems(data);
 
     }
 
+    private void getTeams() {
+        if (listSet) {
+            List<DBTeam> DBteams = client.target("http://localhost:8080/MavenMall/webapi/teams").request(MediaType.APPLICATION_JSON).get(new GenericType<List<DBTeam>>() {
+            });
+            for (int i = 0; i < DBteams.size(); i++) {
+                String teamName = DBteams.get(i).getName();
+                String teamManager = DBteams.get(i).getManager();
+                double teamBalance = DBteams.get(i).getBalance();
+                Team teamToAdd = new Team(teamName, teamManager, teamBalance);
+                teamToAdd.setId(DBteams.get(i).getId());
+                teams.add(teamToAdd);
+            }
+            listSet = false;
+        }
+    }
 }

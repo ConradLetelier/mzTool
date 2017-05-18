@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +31,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -213,11 +216,12 @@ public class LagViewController implements Initializable {
         String sum = Integer.toString(teams.get(teamIndex).getPlayers().size());
         playerSum.setText(sum);
         if(!teams.isEmpty()){
-        nameLabel.setText(teams.get(teamIndex).getName());
-        managerLabel.setText(teams.get(teamIndex).getManager());
-        double balance=teams.get(teamIndex).getBalance();
+        //nameLabel.setText(teams.get(teamIndex).getName());
+        nameLabel.textProperty().bind(teams.get(teamIndex).teamNameProperty());
+        managerLabel.textProperty().bind(teams.get(teamIndex).teamManagerProperty());
+        double balance=teams.get(teamIndex).getTeamBalance();
         String balanceParse=Double.toString(balance);
-        balanceLabel.setText(balanceParse);
+        balanceLabel.textProperty().bind(Bindings.format(balanceParse, balance));
         
         data1.clear();;
         
