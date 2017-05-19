@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -26,6 +28,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import static managerzone.tool.LagViewController.data1;
+import static managerzone.tool.MainPageController.client;
 import static managerzone.tool.MainPageController.teamIndex;
 import static managerzone.tool.ManagerzoneTool.teams;
 
@@ -50,8 +53,13 @@ public class addPlayerController implements Initializable {
     private void addNewPlayer(ActionEvent event) {
         String name=nameInput.getText();
         String imgURL=urlInput.getText();
-        //Player newPlayerToBeAdded = new Player(name, imgURL);
-        //teams.get(teamIndex).getPlayers().add(newPlayerToBeAdded);
+        Player playerToAdd = new Player();
+        playerToAdd.setName(name);
+        playerToAdd.setImgURL(imgURL);
+        playerToAdd.setTeam(teams.get(teamIndex));
+        int teamId = teams.get(teamIndex).getId();
+        Player p =client.target("http://localhost:8080/mavenMall/webapi/teams/"+teamId+"/players").request(MediaType.APPLICATION_JSON).post(Entity.entity(playerToAdd, "application/json;charset=utf-8"),Player.class);
+        teams.get(teamIndex).getPlayers().add(playerToAdd);
         data1.add(name);
         Stage stage = (Stage) confirmAddPlayerButton.getScene().getWindow();
         stage.close();

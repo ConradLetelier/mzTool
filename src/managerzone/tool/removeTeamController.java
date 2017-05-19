@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javax.ws.rs.core.MediaType;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -25,6 +26,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import static managerzone.tool.LagViewController.playerIndex;
+import static managerzone.tool.MainPageController.client;
 import static managerzone.tool.MainPageController.teamIndex;
 import static managerzone.tool.ManagerzoneTool.teams;
 
@@ -48,9 +50,14 @@ public class removeTeamController implements Initializable {
     @FXML
     private void removeTeam(ActionEvent event) throws IOException {
         if(teamRemove){
+            int teamId = teams.get(teamIndex).getId();
+            client.target("http://localhost:8080/mavenMall/webapi/teams/"+teamId).request(MediaType.APPLICATION_JSON).delete();
             teams.remove(teamIndex);
             teamRemove = false;
         }else if (playerRemove){
+            int teamId = teams.get(teamIndex).getId();
+            int playerId = teams.get(teamIndex).getPlayers().get(playerIndex).getId();
+            client.target("http://localhost:8080/mavenMall/webapi/teams/"+teamId+"/players/"+playerId).request(MediaType.APPLICATION_JSON).delete();
             teams.get(teamIndex).getPlayers().remove(playerIndex);
             playerRemove = false;
         }

@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -26,6 +28,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import static managerzone.tool.LagViewController.playerIndex;
+import static managerzone.tool.MainPageController.client;
 import static managerzone.tool.MainPageController.teamIndex;
 import static managerzone.tool.ManagerzoneTool.teams;
 
@@ -48,7 +51,10 @@ public class changePlayerController implements Initializable {
     private void change(ActionEvent event){
         String name = nameInput.getText();
         String url = urlInput.getText();
+        int teamId = teams.get(teamIndex).getId();
         teams.get(teamIndex).changePlayer(playerIndex, name, url);
+        Player changedPlayer = teams.get(teamIndex).getPlayers().get(playerIndex);
+        client.target("http://localhost:8080/mavenMall/webapi/teams/"+teamId+"/players/"+changedPlayer.getId()).request().put(Entity.entity(changedPlayer, MediaType.APPLICATION_JSON));
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }

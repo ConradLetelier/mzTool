@@ -63,7 +63,7 @@ public class MainPageController implements Initializable {
     public static int teamIndex = -1;
     public static ObservableList<String> data = FXCollections.observableArrayList();
     Mouse mouse = new Mouse();
-    Client client;
+    public static Client client;
 
     @FXML
     private Label statusLabel;
@@ -130,7 +130,7 @@ public class MainPageController implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addTeamButton.getScene().getWindow());
-        stage.setTitle("Add new player");
+        stage.setTitle("Lägg till nytt lag");
         stage.showAndWait();
     }
 
@@ -176,13 +176,14 @@ public class MainPageController implements Initializable {
 
     private void getTeams() {
         if (listSet) {
-            List<DBTeam> DBteams = client.target("http://localhost:8080/MavenMall/webapi/teams").request(MediaType.APPLICATION_JSON).get(new GenericType<List<DBTeam>>() {
+            List<DBTeam> DBteams = client.target("http://localhost:8080/mavenMall/webapi/teams").request(MediaType.APPLICATION_JSON).get(new GenericType<List<DBTeam>>() {
             });
             for (int i = 0; i < DBteams.size(); i++) {
                 String teamName = DBteams.get(i).getName();
                 String teamManager = DBteams.get(i).getManager();
                 double teamBalance = DBteams.get(i).getBalance();
                 Team teamToAdd = new Team(teamName, teamManager, teamBalance);
+                teamToAdd.setPlayers((ArrayList<Player>) DBteams.get(i).getPlayers());
                 teamToAdd.setId(DBteams.get(i).getId());
                 teams.add(teamToAdd);
             }
