@@ -176,7 +176,7 @@ public class MainPageController implements Initializable {
 
     private void getTeams() {
         if (listSet) {
-            List<DBTeam> DBteams = client.target("http://localhost:8080/mavenMall/webapi/teams").request(MediaType.APPLICATION_JSON).get(new GenericType<List<DBTeam>>() {
+            List<DBTeam> DBteams = client.target("http://localhost:8080/MavenMall/webapi/teams").request(MediaType.APPLICATION_JSON).get(new GenericType<List<DBTeam>>() {
             });
             for (int i = 0; i < DBteams.size(); i++) {
                 String teamName = DBteams.get(i).getName();

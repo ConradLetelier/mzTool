@@ -20,48 +20,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="754.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerzone.tool.SpelarViewController">
    <children>
       <BorderPane layoutX="339.0" layoutY="159.0" prefHeight="560.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <GridPane BorderPane.alignment="CENTER">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="0.0" prefWidth="0.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="606.0" minWidth="10.0" prefWidth="606.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="0.0" prefWidth="0.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="165.0" minHeight="1.0" prefHeight="17.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="338.0" minHeight="10.0" prefHeight="322.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <children>
-                        <ChoiceBox fx:id="playerList" prefWidth="200.0" />
-                        <ImageView fx:id="image" fitHeight="313.0" fitWidth="472.0" pickOnBounds="true" preserveRatio="true" styleClass="playerImage" />
-                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
-                           <children>
-                              <Button fx:id="removePlayerButton" mnemonicParsing="false" onAction="#removePlayer" text="Radera">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button fx:id="changePlayerButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#changePlayer" text="Redigera">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets right="50.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </GridPane>
-         </center>
          <top>
             <VBox BorderPane.alignment="CENTER">
                <children>
@@ -104,7 +62,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="40.0" styleClass="menu">
+                  <HBox alignment="CENTER" opacity="0.9" prefHeight="40.0" styleClass="menu">
                      <children>
                         <Label fx:id="TeamConfirmMenuLabel" alignment="CENTER" onMouseClicked="#chooseTeam" prefHeight="30.0" prefWidth="110.0" styleClass="menuItem" text="Välj lag">
                            <cursor>
@@ -128,7 +86,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Label>
-                        <Label fx:id="playerMenuButton" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuItem" text="Spelare">
+                        <Label fx:id="playerMenuButton" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuItemSelected" text="Spelare">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
@@ -152,9 +110,62 @@
                         </Label>
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="758.0" />
                </children>
             </VBox>
          </top>
+         <center>
+            <GridPane styleClass="containerBox" BorderPane.alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="606.0" minWidth="10.0" prefWidth="606.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="0.0" prefWidth="0.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+                  <RowConstraints maxHeight="165.0" minHeight="0.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="299.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <children>
+                        <ChoiceBox fx:id="playerList" prefWidth="200.0" />
+                        <ImageView fx:id="image" fitHeight="264.0" fitWidth="430.0" pickOnBounds="true" preserveRatio="true" styleClass="playerImage" />
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                           <children>
+                              <Button fx:id="removePlayerButton" mnemonicParsing="false" onAction="#removePlayer" text="Radera">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="changePlayerButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#changePlayer" text="Redigera">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets right="50.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </center>
+         <right>
+            <Region prefHeight="508.0" prefWidth="64.0" BorderPane.alignment="CENTER" />
+         </right>
+         <left>
+            <Region prefHeight="508.0" prefWidth="64.0" BorderPane.alignment="CENTER" />
+         </left>
+         <bottom>
+            <Region prefHeight="50.0" prefWidth="758.0" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

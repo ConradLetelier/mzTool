@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="760.0" styleClass="test" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerzone.tool.MainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="760.0" styleClass="test" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerzone.tool.MainPageController">
    <children>
       <BorderPane layoutX="349.0" layoutY="169.0" prefHeight="560.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <GridPane BorderPane.alignment="CENTER">
+            <GridPane styleClass="containerBox" BorderPane.alignment="CENTER">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="600.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <HBox alignment="CENTER_LEFT" spacing="50.0">
                            <children>
-                              <Label minWidth="-Infinity" prefWidth="100.0" text="Välj Lag">
+                              <Label minWidth="-Infinity" prefWidth="100.0" styleClass="bigLabel" text="Välj Lag">
                                  <font>
-                                    <Font name="Gadugi Bold" size="25.0" />
+                                    <Font name="Calibri Italic" size="24.0" />
                                  </font>
                               </Label>
-                              <Label text="Sök">
+                              <Label styleClass="littleLabel" text="Sök" textFill="#757575">
                                  <padding>
                                     <Insets left="135.0" />
                                  </padding>
@@ -39,7 +47,8 @@
                               <TextField fx:id="searchBox" maxWidth="-Infinity" minWidth="-Infinity" onKeyPressed="#search" prefWidth="100.0" />
                            </children>
                         </HBox>
-                        <ListView fx:id="teamListView" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#teamConfirmer" prefHeight="235.0" prefWidth="454.0" />
+                        <Region prefHeight="10.0" prefWidth="556.0" />
+                        <ListView fx:id="teamListView" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#teamConfirmer" prefHeight="225.0" prefWidth="361.0" />
                         <HBox alignment="CENTER_RIGHT" layoutX="60.0" layoutY="80.0">
                            <children>
                               <Button fx:id="addTeamButton" mnemonicParsing="false" onAction="#addTeam" prefHeight="27.0" prefWidth="82.0" text="Lägg till lag" />
@@ -50,6 +59,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </VBox>
+                  <Region prefHeight="39.0" prefWidth="606.0" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="0.0" prefWidth="0.0" />
@@ -57,9 +67,10 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="0.0" prefWidth="0.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="165.0" minHeight="0.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
+                  <RowConstraints maxHeight="165.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="417.0" minHeight="10.0" prefHeight="318.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
          </center>
@@ -108,20 +119,20 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="40.0" styleClass="menu">
+                  <HBox alignment="CENTER" opacity="0.9" prefHeight="40.0" styleClass="menu">
                      <children>
-                        <Label fx:id="TeamConfirmMenuLabel1" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuItem" text="Välj lag">
+                        <Label fx:id="TeamConfirmMenuLabel1" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuItemSelected" text="Välj lag">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <font>
-                              <Font name="Gadugi Bold" size="20.0" />
+                              <Font name="Gadugi" size="20.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" style="-fx-border-color: black;" text="Lag info">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuFill" text="Lag info">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
@@ -132,7 +143,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Label>
-                        <Label fx:id="playerMenuButton" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" style="-fx-border-color: black;" text="Spelare">
+                        <Label fx:id="playerMenuButton" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuFill" text="Spelare">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
@@ -143,7 +154,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" style="-fx-border-color: black;" text="Statistik">
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="menuFill" text="Statistik">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
@@ -153,15 +164,25 @@
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </Label>
                      </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="50.0" prefHeight="40.0" />
                </children>
             </VBox>
          </top>
          <left>
             <Region prefHeight="508.0" prefWidth="64.0" BorderPane.alignment="CENTER" />
          </left>
+         <bottom>
+            <Region prefHeight="50.0" prefWidth="758.0" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>
