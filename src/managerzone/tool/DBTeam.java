@@ -7,6 +7,7 @@ package managerzone.tool;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -23,7 +24,7 @@ public class DBTeam implements Serializable{
     String manager;
     double balance;
     
-    @OneToMany(mappedBy="team")
+    @OneToMany(mappedBy="team", cascade = CascadeType.REMOVE)
     List<Player> players;
     
     public DBTeam(){}

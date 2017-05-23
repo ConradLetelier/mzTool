@@ -62,6 +62,7 @@ public class changeTeamController implements Initializable {
         t.setName(name);
         t.setManager(manager);
         t.setBalance(balance);
+        t.setId(id);
         client.target("http://localhost:8080/mavenMall/webapi/teams/"+id).request().put(Entity.entity(t, MediaType.APPLICATION_JSON));
         teams.get(teamIndex).setTeamName(name);
         teams.get(teamIndex).setTeamManager(manager);

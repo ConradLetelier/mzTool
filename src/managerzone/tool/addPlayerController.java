@@ -57,8 +57,10 @@ public class addPlayerController implements Initializable {
         playerToAdd.setName(name);
         playerToAdd.setImgURL(imgURL);
         playerToAdd.setTeam(teams.get(teamIndex));
+        
         int teamId = teams.get(teamIndex).getId();
         Player p =client.target("http://localhost:8080/mavenMall/webapi/teams/"+teamId+"/players").request(MediaType.APPLICATION_JSON).post(Entity.entity(playerToAdd, "application/json;charset=utf-8"),Player.class);
+        playerToAdd.setId(p.getId());
         teams.get(teamIndex).getPlayers().add(playerToAdd);
         data1.add(name);
         Stage stage = (Stage) confirmAddPlayerButton.getScene().getWindow();

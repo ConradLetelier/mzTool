@@ -51,13 +51,17 @@ public class removeTeamController implements Initializable {
     private void removeTeam(ActionEvent event) throws IOException {
         if(teamRemove){
             int teamId = teams.get(teamIndex).getId();
+            System.out.println(teamId);
             client.target("http://localhost:8080/mavenMall/webapi/teams/"+teamId).request(MediaType.APPLICATION_JSON).delete();
+   
             teams.remove(teamIndex);
             teamRemove = false;
         }else if (playerRemove){
             int teamId = teams.get(teamIndex).getId();
             int playerId = teams.get(teamIndex).getPlayers().get(playerIndex).getId();
+
             client.target("http://localhost:8080/mavenMall/webapi/teams/"+teamId+"/players/"+playerId).request(MediaType.APPLICATION_JSON).delete();
+
             teams.get(teamIndex).getPlayers().remove(playerIndex);
             playerRemove = false;
         }

@@ -54,6 +54,8 @@ public class changePlayerController implements Initializable {
         int teamId = teams.get(teamIndex).getId();
         teams.get(teamIndex).changePlayer(playerIndex, name, url);
         Player changedPlayer = teams.get(teamIndex).getPlayers().get(playerIndex);
+        System.out.println(playerIndex);
+        System.out.println(changedPlayer.getId());
         client.target("http://localhost:8080/mavenMall/webapi/teams/"+teamId+"/players/"+changedPlayer.getId()).request().put(Entity.entity(changedPlayer, MediaType.APPLICATION_JSON));
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
